@@ -1,0 +1,255 @@
+.dashboard {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .dashboard h1 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 2.2rem;
+    border-bottom: 2px solid #e1e4e8;
+    padding-bottom: 0.5rem;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-title {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dashboard-title h1 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .dashboard-date {
+    font-size: 1rem;
+    color: #7f8c8d;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .stat-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #3498db;
+  }
+  
+  .stat-card:nth-child(1) {
+    border-left-color: #3498db; /* Blue */
+  }
+  
+  .stat-card:nth-child(2) {
+    border-left-color: #2ecc71; /* Green */
+  }
+  
+  .stat-card:nth-child(3) {
+    border-left-color: #f39c12; /* Orange */
+  }
+  
+  .stat-card:nth-child(4) {
+    border-left-color: #9b59b6; /* Purple */
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card h3 {
+    margin: 0 0 0.75rem 0;
+    color: #7f8c8d;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  .dashboard-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .action-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  
+  .action-button.primary {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .action-button.primary:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+  }
+  
+  .action-button.secondary {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+  }
+  
+  .action-button.secondary:hover {
+    background-color: #bdc3c7;
+    text-decoration: none;
+  }
+  
+  .recent-bookings-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recent-bookings-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 0.5rem;
+  }
+  
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .bookings-table th, 
+  .bookings-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eaedf0;
+  }
+  
+  .bookings-table th {
+    font-weight: 600;
+    color: #7f8c8d;
+    background-color: #f8f9fa;
+  }
+  
+  .bookings-table tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .bookings-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-badge.confirmed {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+  }
+  
+  .status-badge.checked-in {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+  }
+  
+  .status-badge.checked-out {
+    background-color: rgba(149, 165, 166, 0.2);
+    color: #7f8c8d;
+  }
+  
+  .status-badge.cancelled {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 1.125rem;
+    color: #7f8c8d;
+  }
+  
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e74c3c;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .stats-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 1rem;
+    }
+    
+    .dashboard-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .dashboard-date {
+      margin-top: 0.5rem;
+    }
+    
+    .stats-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+    }
+    
+    .dashboard-actions {
+      flex-direction: column;
+    }
+    
+    .bookings-table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
