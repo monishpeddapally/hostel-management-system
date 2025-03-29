@@ -1,3 +1,4 @@
+// File: src/contexts/RoomContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 // Create context
@@ -64,6 +65,11 @@ export const RoomProvider = ({ children }) => {
     setRooms(rooms.map(room => 
       room.room_id === parseInt(id) ? { ...room, status } : room
     ));
+    
+    // BookingContext will handle this through window.handleRoomStatusChange
+    if (window.handleRoomStatusChange) {
+      window.handleRoomStatusChange(parseInt(id), status);
+    }
   };
   
   // Get available rooms for a date range

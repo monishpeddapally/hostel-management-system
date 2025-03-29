@@ -1,0 +1,280 @@
+.check-in-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .check-in-header {
+    margin-bottom: 2rem;
+  }
+  
+  .check-in-header h1 {
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .no-bookings {
+    background-color: white;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-bookings p {
+    margin-bottom: 1.5rem;
+    color: #7f8c8d;
+    font-size: 1.125rem;
+  }
+  
+  .view-all-link {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+  
+  .view-all-link:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+  }
+  
+  .check-in-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  
+  .bookings-list-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-box {
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .bookings-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+  
+  .booking-item {
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .booking-item:last-child {
+    border-bottom: none;
+  }
+  
+  .booking-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .booking-item.selected {
+    background-color: #edf7fd;
+    border-left: 4px solid #3498db;
+  }
+  
+  .booking-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .booking-id {
+    font-weight: 600;
+    color: #3498db;
+  }
+  
+  .room-number {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .guest-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+  
+  .booking-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #7f8c8d;
+  }
+  
+  .check-dates {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .no-results {
+    padding: 2rem;
+    text-align: center;
+    color: #7f8c8d;
+  }
+  
+  .check-in-details-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .selected-booking-details h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 1.5rem;
+  }
+  
+  .guest-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .info-card {
+    border: 1px solid #ecf0f1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .card-header h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    color: #2c3e50;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .info-row {
+    display: flex;
+    margin-bottom: 0.75rem;
+  }
+  
+  .info-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-label {
+    flex: 0 0 40%;
+    font-weight: 600;
+    color: #7f8c8d;
+  }
+  
+  .info-value {
+    flex: 1;
+    color: #2c3e50;
+  }
+  
+  .check-in-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .cancel-button,
+  .check-in-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+  }
+  
+  .cancel-button {
+    background-color: white;
+    color: #2c3e50;
+    border: 1px solid #ddd;
+  }
+  
+  .cancel-button:hover {
+    background-color: #f1f2f6;
+  }
+  
+  .check-in-button {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .check-in-button:hover:not(:disabled) {
+    background-color: #27ae60;
+  }
+  
+  .check-in-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .no-booking-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+  
+  .no-booking-selected .message {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.125rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .check-in-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .guest-info {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .check-in-container {
+      padding: 1rem;
+    }
+    
+    .check-in-actions {
+      flex-direction: column-reverse;
+    }
+    
+    .cancel-button,
+    .check-in-button {
+      width: 100%;
+    }
+  }

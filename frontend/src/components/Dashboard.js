@@ -1,121 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { RoomContext } from '../contexts/RoomContext';
+import { BookingContext } from '../contexts/BookingContext';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({
-    todayCheckIns: 0,
-    todayCheckOuts: 0,
-    availableRooms: 0,
-    occupancyRate: 0
-  });
+  const { rooms } = useContext(RoomContext);
+  const { bookings, getTodayCheckIns, getTodayCheckOuts } = useContext(BookingContext);
   
-  const [recentBookings, setRecentBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentDate] = useState(new Date().toLocaleDateString('en-US', {
+  // Calculate today's check-ins and check-outs
+  const todayCheckIns = getTodayCheckIns();
+  const todayCheckOuts = getTodayCheckOuts();
+  
+  // Calculate available rooms and occupancy rate
+  const availableRooms = rooms.filter(room => room.status === 'available').length;
+  const occupiedRooms = rooms.filter(room => room.status === 'occupied').length;
+  const totalRooms = rooms.length;
+  const occupancyRate = totalRooms > 0 ? Math.round((occupiedRooms / totalRooms) * 100) : 0;
+  
+  // Get recent bookings
+  const recentBookings = [...bookings]
+    .sort((a, b) => new Date(b.booking_date) - new Date(a.booking_date))
+    .slice(0, 5);
+  
+  // Current date for display
+  const currentDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  }));
-
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        setLoading(true);
-        
-        // Replace with your actual API endpoints
-        const response = await axios.get('http://localhost:3001/api/dashboard/stats');
-        setStats(response.data);
-        
-        const bookingsResponse = await axios.get('http://localhost:3001/api/bookings?limit=5');
-        setRecentBookings(bookingsResponse.data);
-        
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching dashboard data:', err);
-        setError('Failed to load dashboard data. Please try again later.');
-        setLoading(false);
-      }
-    };
-
-    // For now, use mock data since our endpoints might not be ready
-    const mockData = () => {
-      setStats({
-        todayCheckIns: 5,
-        todayCheckOuts: 3,
-        availableRooms: 12,
-        occupancyRate: 68
-      });
-      
-      setRecentBookings([
-        {
-          booking_id: 1,
-          first_name: 'John',
-          last_name: 'Doe',
-          check_in_date: '2025-03-20',
-          check_out_date: '2025-03-25',
-          room_number: '101',
-          status: 'confirmed'
-        },
-        {
-          booking_id: 2,
-          first_name: 'Jane',
-          last_name: 'Smith',
-          check_in_date: '2025-03-21',
-          check_out_date: '2025-03-23',
-          room_number: '102',
-          status: 'checked-in'
-        },
-        {
-          booking_id: 3,
-          first_name: 'Michael',
-          last_name: 'Johnson',
-          check_in_date: '2025-03-19',
-          check_out_date: '2025-03-22',
-          room_number: '103',
-          status: 'checked-out'
-        },
-        {
-          booking_id: 4,
-          first_name: 'Sarah',
-          last_name: 'Williams',
-          check_in_date: '2025-03-22',
-          check_out_date: '2025-03-26',
-          room_number: '104',
-          status: 'confirmed'
-        },
-        {
-          booking_id: 5,
-          first_name: 'Robert',
-          last_name: 'Brown',
-          check_in_date: '2025-03-18',
-          check_out_date: '2025-03-21',
-          room_number: '105',
-          status: 'checked-out'
-        }
-      ]);
-      
-      setLoading(false);
-    };
-    
-    // Use mock data for now
-    mockData();
-    
-    // Uncomment this when your API is ready
-    // fetchDashboardData();
-  }, []);
-
-  if (loading) {
-    return <div className="loading">Loading dashboard data...</div>;
-  }
-
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
-
+  });
+  
   return (
     <div className="dashboard">
       <div className="dashboard-header">
@@ -130,22 +45,22 @@ const Dashboard = () => {
       <div className="stats-container">
         <div className="stat-card">
           <h3>Today's Check-ins</h3>
-          <div className="stat-value">{stats.todayCheckIns}</div>
+          <div className="stat-value">{todayCheckIns.length}</div>
         </div>
         
         <div className="stat-card">
           <h3>Today's Check-outs</h3>
-          <div className="stat-value">{stats.todayCheckOuts}</div>
+          <div className="stat-value">{todayCheckOuts.length}</div>
         </div>
         
         <div className="stat-card">
           <h3>Available Rooms</h3>
-          <div className="stat-value">{stats.availableRooms}</div>
+          <div className="stat-value">{availableRooms}</div>
         </div>
         
         <div className="stat-card">
           <h3>Occupancy Rate</h3>
-          <div className="stat-value">{stats.occupancyRate}%</div>
+          <div className="stat-value">{occupancyRate}%</div>
         </div>
       </div>
       
@@ -179,7 +94,7 @@ const Dashboard = () => {
               {recentBookings.map(booking => (
                 <tr key={booking.booking_id}>
                   <td>#{booking.booking_id}</td>
-                  <td>{booking.first_name} {booking.last_name}</td>
+                  <td>{booking.guest_name}</td>
                   <td>{booking.room_number}</td>
                   <td>{new Date(booking.check_in_date).toLocaleDateString()}</td>
                   <td>{new Date(booking.check_out_date).toLocaleDateString()}</td>

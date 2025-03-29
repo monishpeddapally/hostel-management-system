@@ -1,10 +1,11 @@
+// File: src/components/rooms/RoomList.js
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { RoomContext } from '../../contexts/RoomContext';
 import '../../styles/RoomList.css';
 
 const RoomList = () => {
   const { rooms, updateRoomStatus } = useContext(RoomContext);
+  
   const [filteredRooms, setFilteredRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
